@@ -68,7 +68,7 @@
 
 var padDate = function(value) {
   //在月份、日期、小时等小于10时在前面补0
-  console.log("padDate=", padDate);
+  // console.log("padDate=", padDate);
   return value < 10 ? "0" + value : value;
 };
 export default {
@@ -161,28 +161,14 @@ export default {
     formatDate: function(value) {
       //value为需要过滤的数据
       var date = new Date();
-      // console.log('date=',date);
       var year = date.getFullYear();
       var month = padDate(date.getMonth() + 1);
-      console.log("month=", month);
       var day = padDate(date.getDate());
       var hours = padDate(date.getHours());
       var minutes = padDate(date.getMinutes());
-      var seconds = padDate(date.getSeconds());
+
       //整理数据并返回
-      return (
-        year +
-        " / " +
-        month +
-        " / " +
-        day +
-        " " +
-        hours +
-        ":" +
-        minutes +
-        ":" +
-        seconds
-      );
+      return year + " / " + month + " / " + day + " " + hours + ":" + minutes;
     }
   },
   methods: {
@@ -228,13 +214,13 @@ export default {
       // console.log('total_monney=',this.total_money);
     }
   },
-  mounted: function() {
-    //定时器，用于每秒刷新页面
-    var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
-    this.timer = setInterval(function() {
-      _this.date = new Date(); //修改数据date
-    }, 1000);
-  },
+  // mounted: function() {
+  //   //定时器，用于每秒刷新页面
+  //   var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
+  //   this.timer = setInterval(function() {
+  //     _this.date = new Date(); //修改数据date
+  //   }, 1000);
+  // },
   beforeDestory: function() {
     //清除定时器
     if (this.timer) {
@@ -258,12 +244,13 @@ export default {
   text-align: center;
 }
 .end_block {
-  width: 55%;
+  width: 90%;
+  height: 20%;
   display: inline-block;
 }
 .time_block {
   display: inline-block;
-  width: 25%;
+  width: 100%;
   text-align: center;
   font-size: large;
 }
@@ -296,11 +283,12 @@ export default {
 }
 
 .product_img {
-  height: 150px;
+  height: 155px;
   width: 150px;
 }
 
 .amount_block {
+  height: 20%;
   margin: 30px;
   float: right;
 }
@@ -313,5 +301,10 @@ export default {
 .list-group-item {
   text-align: left;
   margin: 3px;
+}
+.menu {
+  height: 80%;
+  width: 90%;
+  left: 5%;
 }
 </style>

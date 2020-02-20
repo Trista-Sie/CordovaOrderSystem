@@ -36,7 +36,7 @@
     <div class="purchase_way">
       <font size="4">付款方式:</font>
 
-      <form action="/action_page.php" class="">
+      <form action="/action_page.php" class>
         <input type="radio" name="choice" value="ibon" />7-11 ibon
         <br />
         <input type="radio" name="choice" value="WebATM" />WebATM 轉帳
@@ -88,35 +88,22 @@ export default {
       var day = padDate(date.getDate());
       var hours = padDate(date.getHours());
       var minutes = padDate(date.getMinutes());
-      var seconds = padDate(date.getSeconds());
       //整理数据并返回
-      return (
-        year +
-        " / " +
-        month +
-        " / " +
-        day +
-        " " +
-        hours +
-        ":" +
-        minutes +
-        ":" +
-        seconds
-      );
+      return year + " / " + month + " / " + day + " " + hours + ":" + minutes;
     }
   },
   methods: {},
   mounted: function() {
     this.orderData = this.$store.getters.get_order_list;
-    console.log("orderData=", this.orderData);
+    // console.log("orderData=", this.orderData);
     this.total_amount = this.$store.getters.get_order_list_amount;
     // console.log("total_amount=", this.total_amount);
     this.total_money = this.$store.getters.get_order_list_price;
     // console.log("total_monney=", this.total_money);
     var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
-    this.timer = setInterval(function() {
-      _this.date = new Date(); //修改数据date
-    }, 1000);
+    // this.timer = setInterval(function() {
+    //   _this.date = new Date(); //修改数据date
+    // }, 1000);
   },
   beforeDestory: function() {
     //清除定时器
