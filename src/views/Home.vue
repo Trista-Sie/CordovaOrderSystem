@@ -1,60 +1,68 @@
 <template>
   <div class="home">
-    <div class="Navbar">
-      <div class="navbar-brand">
-        <b>Hotbucks</b>
+    <center>
+      <div class="Navbar">
+        <div class="navbar-brand">
+          <b>Hotbucks</b>
+        </div>
+        <img class="info_icon" src="../assets/info_icon.png" />
       </div>
-      <img class="info_icon" src="../assets/info_icon.png" />
-    </div>
+    </center>
 
-    <div class="menu" id="menu">
-      <!-- for迴圈顯示商品列表 -->
-      <ul :key="item" v-for="item in product">
-        <li class="list-group-item">
-          <img class="product_img" v-bind:src="getSrc(item.img)" v-bind:alt="pic" />
-          {{item.name}} {{item.price}}元
-          <div class="amount_block">
-            <img
-              class="plus_minus"
-              src="../assets/plus.png"
-              @click="clickPlus(item.number,item.name)"
-            />
-            <input
-              :id="item.number"
-              v-model="item.amount"
-              class="amount col-md-3 form-control"
-              type="text"
-            />
-            <img
-              class="plus_minus"
-              src="../assets/minus.png"
-              @click="clickMinus(item.number,item.name)"
-            />
-          </div>
-          <br />
-        </li>
-      </ul>
-    </div>
+    <center>
+      <div class="menu" id="menu">
+        <!-- for迴圈顯示商品列表 -->
+        <ul :key="item" v-for="item in product">
+          <li class="list-group-item">
+            <img class="product_img" v-bind:src="getSrc(item.img)" v-bind:alt="pic" />
+            {{item.name}} {{item.price}}元
+            <div class="amount_block">
+              數量
+              <img
+                class="plus"
+                src="../assets/plus.png"
+                @click="clickPlus(item.number,item.name)"
+              />
+              <input class="amount_input" :id="item.number" v-model="item.amount" type="text" />
+              <img
+                class="minus"
+                src="../assets/minus.png"
+                @click="clickMinus(item.number,item.name)"
+              />
+            </div>
+            <br />
+          </li>
+        </ul>
+      </div>
+    </center>
 
     <div class="end_block">
-      <div class="totalPrice">
-        總金額:
-        <input class="form-control" id="totalPrice" type="text" value="0" v-model="total_money" />
-      </div>
+      <div class="total_info">
+        <div class="totalPrice">
+          總金額
+          <input
+            class="to_price_input"
+            id="totalPrice"
+            type="text"
+            value="0"
+            v-model="total_money"
+          />
+        </div>
 
-      <div class="totalAmount">
-        總數量:
-        <input
-          class="form-control"
-          id="totalAmount"
-          type="text"
-          value="0"
-          v-model="total_amount"
-        />
+        <div class="totalAmount">
+          總數量
+          <input
+            class="to_amount_input"
+            id="totalAmount"
+            type="text"
+            value="0"
+            v-model="total_amount"
+          />
+        </div>
       </div>
       <div class="pay" id="pay">
         <router-link :to="{name:'purchase'}">
-          <img class="purchase_icon" id="pay" src="../assets/purchase.png" />
+          <img id="pay" class="purchase_icon" src="../assets/purchase.png" />
         </router-link>
       </div>
       <div class="time_block">{{date | formatDate}}</div>
@@ -232,79 +240,107 @@ export default {
 <style scoped>
 .info_icon {
   float: right;
-  width: 40px;
-  height: 40px;
+  width: 8%;
+  height: 8%;
 }
 .Navbar {
-  width: 100%;
+  width: 85%;
   text-align: center;
 }
 .navbar-brand {
-  font-size: 47px;
+  width: 50%;
+  font-size: 40px;
   text-align: center;
 }
-.end_block {
-  width: 90%;
-  height: 20%;
-  display: inline-block;
-}
+
 .time_block {
   display: inline-block;
   width: 100%;
   text-align: center;
   font-size: large;
 }
-.totalPrice {
-  display: inline-block;
-  text-align: left;
-  font-size: large;
-  margin: 3px;
-}
-
-.totalAmount {
-  display: inline-block;
-  text-align: left;
-  font-size: large;
-  margin: 3px;
-}
-
 .pay {
   display: inline-block;
   text-align: right;
   font-size: large;
 }
 .purchase_icon {
+  margin-top: 5px;
   float: right;
   width: 45px;
   height: 45px;
 }
-.amount {
+.totalPrice {
+  width: 90%;
+  text-align: left;
+  margin-left: 19.5px;
+  font-size: 17px;
+}
+.to_price_input {
+  margin-left: 5px;
+  width: 30%;
+  font-size: 15px;
+  text-align: center;
+}
+.totalAmount {
+  width: 90%;
+  text-align: left;
+  margin-left: 19.5px;
+  font-size: 17px;
+}
+.to_amount_input {
+  margin-left: 5px;
+  width: 30%;
+  font-size: 15px;
+  text-align: center;
+}
+.total_info {
   display: inline-block;
 }
-
+.end_block {
+  width: 90%;
+  display: inline-block;
+}
 .product_img {
-  height: 155px;
-  width: 150px;
+  display: inline-block;
+  height: 55px;
+  width: 55px;
 }
-
 .amount_block {
-  height: 20%;
-  margin: 30px;
-  float: right;
+  display: inline-block;
+  text-align: left;
+  font-size: 17px;
+  float: 40px;
+  margin: 8px;
 }
-
-.plus_minus {
-  height: 30px;
-  width: 30px;
+.amount_input {
+  display: inline-block;
+  margin-left: 5px;
+  width: 20px;
+  font-size: 15px;
+  text-align: center;
 }
-
+.minus {
+  display: inline-block;
+  margin-left: 5px;
+  height: 20px;
+  width: 20px;
+}
+.plus {
+  display: inline-block;
+  margin-left: 10px;
+  height: 20px;
+  width: 20px;
+}
 .list-group-item {
   text-align: left;
-  margin: 3px;
+  height: 50%;
+  width: 95%;
 }
 .menu {
-  height: 80%;
+  position: relative;
+  margin-right: 19.5%;
   width: 90%;
-  left: 5%;
+  font-size: 15px;
 }
 </style>
