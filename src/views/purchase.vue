@@ -2,9 +2,11 @@
   <div class="purchase">
     <div class="Navbar">
       <div class="navbar-brand">
-        <b>Hotbucks Orderlist</b>
+        <b>Shoppinglist</b>
       </div>
-      <img class="info_icon" src="../assets/info_icon.png" />
+      <a href="https://github.com/Trista-Sie/CordovaOrderSystem" target="_blank">
+        <img class="info_icon" src="../assets/info_icon.png" />
+      </a>
     </div>
 
     <div class="menu" id="menu">
@@ -16,16 +18,22 @@
         >{{item.name}} {{item.amount}} 個 {{item.amount*item.price}} 元</li>
       </ul>
     </div>
-    <div class="end_block">
+    <div class="total_info">
       <div class="totalPrice">
         總金額:
-        <input class="form-control" id="totalPrice" type="text" value="0" v-model="total_money" />
+        <input
+          class="to_price_input"
+          id="totalPrice"
+          type="text"
+          value="0"
+          v-model="total_money"
+        />
       </div>
 
       <div class="totalAmount">
         總數量:
         <input
-          class="form-control"
+          class="to_amount_input"
           id="totalAmount"
           type="text"
           value="0"
@@ -35,24 +43,21 @@
     </div>
     <div class="purchase_way">
       <font size="4">付款方式:</font>
-
       <form action="/action_page.php" class>
-        <input type="radio" name="choice" value="ibon" />7-11 ibon
+        <input class="pur_way_input" type="radio" name="choice" value="ibon" />7-11 ibon
         <br />
-        <input type="radio" name="choice" value="WebATM" />WebATM 轉帳
+        <input class="pur_way_input" type="radio" name="choice" value="WebATM" />WebATM 轉帳
         <br />
-        <input type="radio" name="choice" value="getPay" checked />超商取貨付款
+        <input class="pur_way_input" type="radio" name="choice" value="getPay" checked />超商取貨付款
         <br />
         <br />
       </form>
     </div>
-    <div class="toPurchase">
-      <router-link :to="{name:'home'}">
-        <input type="button" value="取消訂單！" />
-      </router-link>
-      <input class="buy" type="button" onclick="alert('下單成功 !')" value="確認購買！" />
-    </div>
-    <div class="time_blocl">下單時間：{{date | formatDate}}</div>
+    <router-link :to="{name:'home'}">
+      <input class="choose" type="button" value="取消訂單！" />
+    </router-link>
+    <input class="choose" type="button" onclick="alert('下單成功 !')" value="確認購買！" />
+    <div class="time_block">下單時間：{{date | formatDate}}</div>
   </div>
 </template>
 
@@ -92,7 +97,15 @@ export default {
       return year + " / " + month + " / " + day + " " + hours + ":" + minutes;
     }
   },
-  methods: {},
+  methods: {
+    reset_info() {
+      this.orderData.forEach((element, index) => {
+        this.orderData[index].amount = 0;
+      });
+      this.total_amount = 0;
+      this.total_price = 0;
+    }
+  },
   mounted: function() {
     this.orderData = this.$store.getters.get_order_list;
     // console.log("orderData=", this.orderData);
@@ -105,6 +118,11 @@ export default {
     //   _this.date = new Date(); //修改数据date
     // }, 1000);
   },
+  beforeCreate() {
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:ivory");
+  },
   beforeDestory: function() {
     //清除定时器
     if (this.timer) {
@@ -116,54 +134,93 @@ export default {
 
 <style scoped>
 .info_icon {
+  display: inline;
+  cursor: pointer;
   float: right;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
 }
 .Navbar {
-  width: 100%;
+  display: inline;
+  width: 85%;
   text-align: center;
 }
 .navbar-brand {
-  font-size: 47px;
+  font-family: Cambria, Cochin, Georgia, Times, "Microsoft JhengHei", serif;
+  width: 50%;
+  font-size: 30px;
   text-align: center;
-}
-.product_img {
-  height: 150px;
-  width: 150px;
 }
 .list-group-item {
   text-align: left;
   margin: 5px;
 }
-.end_block {
-  display: inline-block;
-  width: 80%;
-  margin: 2px;
-  float: left;
-}
 .time_block {
   display: inline-block;
+  font-family: "Microsoft JhengHei";
+  width: 80%;
   text-align: right;
-  float: right;
-  font-size: large;
+  font-size: 18px;
+}
+.choose {
+  cursor: pointer;
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-align: center;
+  margin: 40px;
+}
+.purchase_way {
+  font-family: "Microsoft JhengHei";
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 80%;
+  text-align: left;
+}
+.pur_way_input {
+  display: inline-block;
+  margin-top: 3%;
 }
 .totalPrice {
   display: inline-block;
+  width: 50%;
   text-align: left;
-  font-size: large;
-  margin: 3px;
+  font-size: 18px;
 }
-
+.to_price_input {
+  display: inline-block;
+  margin-left: 5px;
+  width: 50%;
+  border-style: none;
+  font-size: 17px;
+  text-align: left;
+}
 .totalAmount {
   display: inline-block;
+  width: 50%;
   text-align: left;
-  font-size: large;
-  margin: 3px;
+  font-size: 18px;
 }
-.purchase_way {
-  margin: 20px;
-  width: 80%;
+.to_amount_input {
+  display: inline-block;
+  margin-left: 5px;
+  width: 50%;
+  border-style: none;
+  font-size: 17px;
   text-align: left;
+}
+.total_info {
+  display: inline-block;
+  font-family: "Microsoft JhengHei";
+  width: 80%;
+}
+.menu {
+  position: relative;
+  font-family: "Microsoft JhengHei";
+  margin-right: 19.5%;
+  width: 90%;
+  font-size: 15px;
 }
 </style>

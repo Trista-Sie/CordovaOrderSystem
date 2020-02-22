@@ -5,7 +5,9 @@
         <div class="navbar-brand">
           <b>Hotbucks</b>
         </div>
-        <img class="info_icon" src="../assets/info_icon.png" />
+        <a href="https://github.com/Trista-Sie/CordovaOrderSystem" target="_blank">
+          <img class="info_icon" src="../assets/info_icon.png" />
+        </a>
       </div>
     </center>
 
@@ -201,15 +203,11 @@ export default {
         if (id == element.number) {
           if (mode == "plus") {
             this.product[index].amount++;
-            // console.log('index=',index);
-            // console.log('plus=',this.product[index].amount);
           } else if (mode == "minus") {
             this.product[index].amount--;
             if (this.product[index].amount < 0) {
               this.product[index].amount = 0;
             }
-            // console.log('index=',index);
-            // console.log('minus=',this.product[index].amount);
           }
         }
       });
@@ -217,18 +215,14 @@ export default {
     //取得state的變數
     saveData() {
       this.total_amount = this.$store.getters.get_order_list_amount;
-      // console.log('total_amount=',this.total_amount);
       this.total_money = this.$store.getters.get_order_list_price;
-      // console.log('total_monney=',this.total_money);
     }
+  },  
+  beforeCreate() {
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:ivory");
   },
-  // mounted: function() {
-  //   //定时器，用于每秒刷新页面
-  //   var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
-  //   this.timer = setInterval(function() {
-  //     _this.date = new Date(); //修改数据date
-  //   }, 1000);
-  // },
   beforeDestory: function() {
     //清除定时器
     if (this.timer) {
@@ -239,6 +233,7 @@ export default {
 </script>
 <style scoped>
 .info_icon {
+  cursor: pointer;
   float: right;
   width: 8%;
   height: 8%;
@@ -248,11 +243,11 @@ export default {
   text-align: center;
 }
 .navbar-brand {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   width: 50%;
   font-size: 40px;
   text-align: center;
 }
-
 .time_block {
   display: inline-block;
   width: 100%;
@@ -279,8 +274,9 @@ export default {
 .to_price_input {
   margin-left: 5px;
   width: 30%;
+  border-style: none;
   font-size: 15px;
-  text-align: center;
+  text-align: left;
 }
 .totalAmount {
   width: 90%;
@@ -291,15 +287,17 @@ export default {
 .to_amount_input {
   margin-left: 5px;
   width: 30%;
+  border-style: none;
   font-size: 15px;
-  text-align: center;
+  text-align: left;
 }
 .total_info {
   display: inline-block;
 }
 .end_block {
-  width: 90%;
   display: inline-block;
+  width: 90%;
+  font-family: "Microsoft YaHei";
 }
 .product_img {
   display: inline-block;
@@ -317,7 +315,8 @@ export default {
   display: inline-block;
   margin-left: 5px;
   width: 20px;
-  font-size: 15px;
+  border-style: none;
+  font-size: 16px;
   text-align: center;
 }
 .minus {
@@ -339,8 +338,9 @@ export default {
 }
 .menu {
   position: relative;
+  font-family: "Microsoft JhengHei";
   margin-right: 19.5%;
   width: 90%;
-  font-size: 15px;
+  font-size: 16px;
 }
 </style>
