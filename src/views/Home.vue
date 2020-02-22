@@ -251,8 +251,8 @@ export default {
 .time_block {
   display: inline-block;
   width: 100%;
-  text-align: center;
-  font-size: large;
+  text-align: right;
+  font-size: 17px;
 }
 .pay {
   display: inline-block;
@@ -275,7 +275,7 @@ export default {
   margin-left: 5px;
   width: 30%;
   border-style: none;
-  font-size: 15px;
+  font-size: 17px;
   text-align: left;
 }
 .totalAmount {
@@ -288,7 +288,7 @@ export default {
   margin-left: 5px;
   width: 30%;
   border-style: none;
-  font-size: 15px;
+  font-size: 17px;
   text-align: left;
 }
 .total_info {
