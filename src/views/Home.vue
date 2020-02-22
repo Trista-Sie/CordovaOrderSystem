@@ -217,7 +217,7 @@ export default {
       this.total_amount = this.$store.getters.get_order_list_amount;
       this.total_money = this.$store.getters.get_order_list_price;
     }
-  },  
+  },
   beforeCreate() {
     document
       .querySelector("body")
@@ -266,33 +266,36 @@ export default {
   height: 45px;
 }
 .totalPrice {
-  width: 90%;
+  display: inline;
+  width: 40%;
   text-align: left;
-  margin-left: 19.5px;
   font-size: 17px;
 }
 .to_price_input {
   margin-left: 5px;
-  width: 30%;
+  width: 60px;
   border-style: none;
   font-size: 17px;
   text-align: left;
 }
 .totalAmount {
-  width: 90%;
+  display: inline;
+  width: 40%;
   text-align: left;
-  margin-left: 19.5px;
   font-size: 17px;
 }
 .to_amount_input {
   margin-left: 5px;
-  width: 30%;
+  width: 60px;
   border-style: none;
   font-size: 17px;
   text-align: left;
 }
 .total_info {
   display: inline-block;
+  float: left;
+  margin-left: 10px;
+  width: 80%;
 }
 .end_block {
   display: inline-block;
@@ -301,8 +304,8 @@ export default {
 }
 .product_img {
   display: inline-block;
-  height: 55px;
-  width: 55px;
+  height: 80px;
+  width: 80px;
 }
 .amount_block {
   display: inline-block;
@@ -340,7 +343,7 @@ export default {
   position: relative;
   font-family: "Microsoft JhengHei";
   margin-right: 19.5%;
-  width: 90%;
+  width: 95%;
   font-size: 16px;
 }
 </style>

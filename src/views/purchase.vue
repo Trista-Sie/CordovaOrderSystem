@@ -170,7 +170,7 @@ export default {
   padding: 5px 10px;
   border-radius: 4px;
   text-align: center;
-  margin: 40px;
+  margin: 20px;
 }
 .purchase_way {
   font-family: "Microsoft JhengHei";
@@ -185,7 +185,7 @@ export default {
 }
 .totalPrice {
   display: inline-block;
-  width: 50%;
+  width: 30%;
   text-align: left;
   font-size: 18px;
 }
@@ -199,7 +199,7 @@ export default {
 }
 .totalAmount {
   display: inline-block;
-  width: 50%;
+  width: 30%;
   text-align: left;
   font-size: 18px;
 }
